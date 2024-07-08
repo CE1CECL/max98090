@@ -91,7 +91,7 @@ EVT_WDF_IO_QUEUE_IO_INTERNAL_DEVICE_CONTROL MaxmEvtInternalDeviceControl;
 #define DBG_PNP   2
 #define DBG_IOCTL 4
 
-#if 0
+#if 1
 #define MaxmPrint(dbglevel, dbgcatagory, fmt, ...) {          \
     if (MaxmDebugLevel >= dbglevel &&                         \
         (MaxmDebugCatagories && dbgcatagory))                 \

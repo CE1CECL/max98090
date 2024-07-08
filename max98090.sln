@@ -12,12 +12,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "max98090 Package", "max9809
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Vista Debug|x64 = Vista Debug|x64
+		Windows7 Debug|x64 = Windows7 Debug|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Vista Debug|x64.ActiveCfg = Vista Debug|x64
-		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Vista Debug|x64.Build.0 = Vista Debug|x64
-		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Vista Debug|x64.Deploy.0 = Vista Debug|x64
+		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Windows7 Debug|x64.ActiveCfg = Windows7 Debug|x64
+		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Windows7 Debug|x64.Build.0 = Windows7 Debug|x64
+		{EA676041-89D8-4ACF-A48B-F11CA9F5DD8B}.Windows7 Debug|x64.Deploy.0 = Windows7 Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
