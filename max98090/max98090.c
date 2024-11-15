@@ -220,22 +220,22 @@ int max98090_device_init(PMAXM_CONTEXT codec)
 int max98090_set_output(PMAXM_CONTEXT codec) {
 	int res = 0;
 	//Headphone Mixer Configuration
-	res |= max98090_i2c_write(codec, M98090_REG_LEFT_HP_VOLUME, 0x1F);
-	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_HP_VOLUME, 0x1F);
+	res |= max98090_i2c_write(codec, M98090_REG_LEFT_HP_VOLUME, M98090_HPVOLL_MASK);
+	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_HP_VOLUME, M98090_HPVOLL_MASK);
 
 	res |= max98090_i2c_write(codec, M98090_REG_LEFT_HP_MIXER, M98090_MIXHPL_DACL_MASK);
 	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_HP_MIXER, M98090_MIXHPR_DACR_MASK);
 
-	res |= max98090_i2c_write(codec, M98090_REG_HP_CONTROL, 0x30);
+	res |= max98090_i2c_write(codec, M98090_REG_HP_CONTROL, (M98090_MIXHPRSEL_MASK | M98090_MIXHPLSEL_MASK | M98090_MIXHPRG_MASK | M98090_MIXHPLG_MASK));
 
 	//Speaker Mixer Configuration
-	res |= max98090_i2c_write(codec, M98090_REG_LEFT_SPK_VOLUME, 0x3F);
-	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_SPK_VOLUME, 0x3F);
+	res |= max98090_i2c_write(codec, M98090_REG_LEFT_SPK_VOLUME, M98090_SPVOLL_MASK);
+	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_SPK_VOLUME, M98090_SPVOLL_MASK);
 
 	res |= max98090_i2c_write(codec, M98090_REG_LEFT_SPK_MIXER, M98090_MIXSPL_DACL_MASK);
 	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_SPK_MIXER, M98090_MIXSPR_DACR_MASK);
 
-	res |= max98090_i2c_write(codec, M98090_REG_SPK_CONTROL, 0x0f); //gain config -12 db
+	res |= max98090_i2c_write(codec, M98090_REG_SPK_CONTROL, (M98090_MIXSPRG_MASK | M98090_MIXSPLG_MASK));
 
 
 	//Input config
@@ -245,7 +245,7 @@ int max98090_set_output(PMAXM_CONTEXT codec) {
 
 	//Internal Mic
 
-	res |= max98090_i2c_write(codec, M98090_REG_MIC1_INPUT_LEVEL, 0x14);
+	res |= max98090_i2c_write(codec, M98090_REG_MIC1_INPUT_LEVEL, (M98090_MIC_PA1EN_MASK | M98090_MIC_PGAM1_MASK));
 
 	res |= max98090_update_bits(codec, M98090_REG_MIC_BIAS_VOLTAGE, M98090_MBVSEL_MASK, M98090_MBVSEL_2V8);
 
@@ -254,8 +254,8 @@ int max98090_set_output(PMAXM_CONTEXT codec) {
 	res |= max98090_i2c_write(codec, M98090_REG_LEFT_ADC_MIXER, M98090_MIXADL_MIC2_MASK);
 	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_ADC_MIXER, M98090_MIXADR_MIC2_MASK);
 
-	res |= max98090_i2c_write(codec, M98090_REG_LEFT_ADC_LEVEL, (0x4 << M98090_AVLG_SHIFT) | 0x4);
-	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_ADC_LEVEL, (0x4 << M98090_AVLG_SHIFT) | 0x4);
+	res |= max98090_i2c_write(codec, M98090_REG_LEFT_ADC_LEVEL, (0x7 << M98090_AVLG_SHIFT) | 0xF);
+	res |= max98090_i2c_write(codec, M98090_REG_RIGHT_ADC_LEVEL, (0x7 << M98090_AVLG_SHIFT) | 0xF);
 
 	if (codec->HeadsetMicConnected) {
 		max98090_i2c_write(codec, M98090_REG_MIC2_INPUT_LEVEL, (1 << M98090_MIC_PA2EN_SHIFT) | 0x00); //Set PA2EN to 1 for Headset, 0 for internal mic
